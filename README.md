@@ -6,7 +6,7 @@
 
 ## Challenge for Smart Contract Developer
 
-A client needs to create an new smart contract to generate lunch simple ICO
+A client needs to create an new smart contract to launch simple ICO
 
 Based on ERC20 Standard 
 
