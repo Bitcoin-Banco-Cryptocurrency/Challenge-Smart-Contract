@@ -3,7 +3,7 @@ pragma solidity >=0.4.22 <0.6.0;
 
 import "./ERC20Interface.sol";
 
-contract RWCToken {
+contract RWCToken is ERC20Interface {
 
     string public name;
     string public symbol;
