@@ -29,11 +29,11 @@ contract RWCToken is ERC20Interface {
      *
      * Initializes contract with initial supply tokens to the creator of the contract
      */
-    constructor( uint256 initialSupply ) public {
-        _totalSupply = initialSupply * 10 ** uint256(decimals);  // Update total supply with the decimal amount
+    constructor( ) public {
+        _totalSupply = 10 * 10 ** uint256(decimals);  // Update total supply with the decimal amount
         _balanceOf[msg.sender] = _totalSupply;                // Give the creator all initial tokens
-        name = "RWToken";                                   // Set the name for display purposes
-        symbol = "RWT";                               // Set the symbol for display purposes
+        name = "RWCToken";                                   // Set the name for display purposes
+        symbol = "RWC";                               // Set the symbol for display purposes
     }
 
     function totalSupply() public view returns (uint) {
@@ -55,9 +55,13 @@ contract RWCToken is ERC20Interface {
         // Check for overflows
         require(_balanceOf[to] + tokens >= _balanceOf[to], "Operação inválida.");
 
+        uint previousBalance = _balanceOf[msg.sender] + _balanceOf[to];
+
         _balanceOf[msg.sender] -= tokens;
         _balanceOf[to] += tokens;
         emit Transfer(msg.sender, to, tokens);
+
+        assert(_balanceOf[msg.sender] + _balanceOf[to] == previousBalance);
 
         return true;
     }
